@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  body {
+    background-color: #0074D9;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+     
+    color: #FFFFFF; 
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  
+  }
+  .heart-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+ z-index: -1;
+  }
+  .heart {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background-image: url('HEART.png');
+    background-size: cover;
+    animation: flyHeart linear infinite;
+    animation-duration: 5s;
+    opacity: 0;
+ z-index: -1;
+ width: 80px; 
+    height: 80px; 
+  }
+  .text-container {
+    text-align: center;
+    font-size: 120px;
+ position: relative; 
+    z-index: 1; 
+  }
+  .word {
+    display: none;
+  }
+  @keyframes flyHeart {
+    0% {
+      transform: translate(0, 0) rotate(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(100vw, 100vh) rotate(720deg);
+      opacity: 0;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="heart-container"></div>
+<div class="text-container">
+  <span class="word">MY</span>
+  <span class="word">BABY</span>
+  <span class="word">LOVE</span>
+  <span class="word">YOU</span>
+  <span class="word">SO</span>
+  <span class="word">MUCH</span>
+  <span class="word">FOREVER</span>
+  <span class="word">YOU</span>
+  <span class="word">AND</span>
+  <span class="word">I</span>
+  <span class="word">!!!</span>
+  <span class="word">I</span>
+    <span class="word">LOVE</span>
+      <span class="word">YOU</span>
+        <span class="word">OH</span>
+         <span class="word">I</span>
+    <span class="word">LOVE</span>
+      <span class="word">YOU</span>
+        <span class="word">SO</span>
+  <span class="word">MUCH</span>
+  <span class="word">FOREVER</span>
+  <span class="word">YOU</span>
+  <span class="word">AND</span>
+  <span class="word">I</span>
+  <span class="word">!!!</span>
+</div>
+
+<script>
+
+  const words = document.querySelectorAll('.word');
+  let i = 0;
+
+  function show() {
+    if (i < words.length) {
+      words[i].style.display = 'inline';
+      i++;
+      setTimeout(show, 450); 
+    }
+  }
+
+  show();
+
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.left = `${Math.random() * window.innerWidth}px`;
+    document.querySelector('.heart-container').appendChild(heart);
+    setTimeout(() => {
+      heart.remove();
+    }, 6000);
+  }
+
+  setInterval(createHeart, 1000); 
+</script>
+</body>
+</html>
